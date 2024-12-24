@@ -1,0 +1,28 @@
+
+ <table>
+    <tr>
+        <th>qno</th>
+        <th>question</th>
+        <th>coreect answer</th>
+        <th>submitted answer</th>
+    </tr>
+<tr>
+    <tr>{%for list in listoflist%}</tr>
+    <td>{{list.0}}</td>
+    <td>{{list.1}}</td>
+    <td>{{list.2}}</td>
+    <td>{{list.3}}</td>
+</tr>
+{%endfor%}
+</table>
+
+<style>
+    table,td,th,tr
+    {
+        border: 1px solid blueviolet ;
+    }
+    table{
+        border-collapse: collapse ;
+        
+    }
+</style>

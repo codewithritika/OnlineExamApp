@@ -1,0 +1,33 @@
+<h1> Result Analysis</h1>
+
+{% for pageno in listofint %}
+
+        <a href="/examapp/search/{{pageno}}"> {{pageno}} </a>
+    
+{% endfor %}
+
+
+<table>
+
+    <tr>
+     <th>username</th>
+     <th>subject</th>
+     <th>score</th>
+     
+   </tr>
+ 
+     {% for result in results %}
+ 
+         <tr>
+                 <td> {{result.username}} </td>
+                 <td> {{result.subject}} </td>
+                 <td> {{result.score}} </td>
+                 
+ 
+         </tr>
+ 
+     {% endfor %}
+ 
+ </table>
+
+<a href="/examapp/giveMePage3"> go to admin dashboard </a>

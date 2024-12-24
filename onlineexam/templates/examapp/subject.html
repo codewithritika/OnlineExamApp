@@ -1,0 +1,18 @@
+
+{% load static %}
+<span style="color: red;">{{message}}</span><br><br>
+<img src="{%static imgsrc %}" alt="profile" width="100px" height="100px">
+<form>
+    <select name="subject">
+        <!-- {% for subject in subjects %}
+    <option>{{subject.subject}}</option>
+        {% endfor %} -->
+        {% for subject in subjects %}
+            {%for key,value in subject.items%}
+        <option>{{value}}</option>
+            {% endfor %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="start test" formaction="/examapp/startTest/" formmethod="get">
+</form>
+

@@ -1,0 +1,15 @@
+<form  enctype="multipart/form-data">
+    <input type="text" name="username" placeholder="enter username"> <br><br>
+    
+    <input type="password" name="password" placeholder="enter password"><br><br>
+    
+    <input type="email" name="email" placeholder="enter email"><br><br>
+    
+    <input type="file" name="photo"><br><br>
+    
+    <input type="submit" value="register" formaction="/loginapp/saveUser/" formmethod="post"><br>
+    
+    {% csrf_token%}
+
+</form>
+<span style="color: red;">{{message}}</span>

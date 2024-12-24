@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <script>
+
+    var xmlhttp;
+
+	function getRemainingTime()
+	{
+		xmlhttp= new XMLHttpRequest();
+
+		xmlhttp.onload=showtime;
+		
+		xmlhttp.open("get","/examapp/showRemainingTime/",true);
+		
+		xmlhttp.send();
+		
+	}
+
+	function showtime()
+	{
+		
+		//alert(xmlhttp.responseText);
+		
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+
+            var timetodisplay=xmlhttp.responseText
+            var minute=Math.floor(timetodisplay/60) 
+            var seconds=timetodisplay%60
+			document.questionform.show.value=minute + ":" + seconds;
+			
+			if(xmlhttp.responseText==0)
+			{
+				alert("Time Up !!")
+				//xmlhttp.open("get","endexam",true);
+				window.location.href="/examapp/viewResult/";
+			}
+			
+			
+		}
+	}
+	setInterval(getRemainingTime,1000);// 1000 ms - 1 sec  60000ms - 60sec
+
+</script>
+
+</head>
+<body>
+
+    
+<form name="questionform">
+remaining time :-  <input name="show" type="text" value="3 minutes">
+<input type="text " name="qno" size="1px" value="{{question.qno}}"><br><br>    
+<input type="text " name="qtext" size="35px" value="{{question.qtext}}"><br><br>
+<input type="hidden" name="answer" value="{{question.answer}}">
+
+<input type="radio" name="op" value="{{question.op1}}" {% if previousanswer == question.op1 %}checked{% endif %} > <span>{{question.op1}}</span>
+<input type="radio" name="op" value="{{question.op2}}" {% if previousanswer == question.op2 %}checked{% endif %} > <span>{{question.op2}}</span>
+<input type="radio" name="op" value="{{question.op3}}" {% if previousanswer == question.op3 %}checked{% endif %} > <span>{{question.op3}}</span>
+<input type="radio" name="op" value="{{question.op4}}" {% if previousanswer == question.op4 %}checked{% endif %} > <span>{{question.op4}}</span>
+<br><br>
+
+<input type="submit" value="prev" formaction="/examapp/previousQuestion/">
+<input type="submit" value="next" formaction="/examapp/nextQuestion/">
+<input type="submit" value="end exam" formaction="/examapp/endExam/">
+
+</form>
+
+
